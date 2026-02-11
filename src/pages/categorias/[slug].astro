@@ -1,0 +1,170 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Navbar } from "../../components/Navbar";
+import { Footer } from "../../components/Footer";
+
+interface Category {
+  name: string;
+  description: string;
+  bases: string[];
+}
+
+export function getStaticPaths() {
+  const categories: Record<string, Category> = {
+    "innovacion-verde": {
+      name: "Innovación Verde",
+      description: "Proyectos que transforman la industria con soluciones sostenibles.",
+      bases: [
+        "El proyecto debe estar relacionado con innovación tecnológica aplicada a la sostenibilidad.",
+        "Se valorará el impacto medioambiental medible del proyecto.",
+        "El proyecto debe haberse implementado o estar en fase avanzada de desarrollo.",
+        "Se admiten proyectos individuales o colectivos.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "economia-circular": {
+      name: "Economía Circular",
+      description: "Iniciativas que promueven la reutilización y reducción de residuos.",
+      bases: [
+        "El proyecto debe promover principios de economía circular: reducir, reutilizar, reciclar.",
+        "Se valorará la capacidad de escalabilidad de la iniciativa.",
+        "Debe presentarse evidencia del impacto positivo generado.",
+        "Se admiten proyectos de cualquier sector económico.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "movilidad-sostenible": {
+      name: "Movilidad Sostenible",
+      description: "Alternativas de transporte que reducen la huella de carbono.",
+      bases: [
+        "El proyecto debe abordar la movilidad urbana o interurbana sostenible.",
+        "Se valorarán soluciones innovadoras y viables.",
+        "Debe demostrarse la reducción de emisiones de CO₂.",
+        "Se admiten proyectos tecnológicos, de infraestructura o comunitarios.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "energias-renovables": {
+      name: "Energías Renovables",
+      description: "Proyectos que impulsan la transición energética limpia.",
+      bases: [
+        "El proyecto debe estar relacionado con energías renovables o eficiencia energética.",
+        "Se valorará la innovación y el impacto en la comunidad.",
+        "Debe presentarse un plan de viabilidad o resultados obtenidos.",
+        "Se admiten proyectos a cualquier escala.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "biodiversidad": {
+      name: "Biodiversidad",
+      description: "Acciones para la conservación y restauración de ecosistemas.",
+      bases: [
+        "El proyecto debe contribuir a la conservación o restauración de la biodiversidad.",
+        "Se valorará el impacto medible en ecosistemas locales o globales.",
+        "Debe incluir un componente de sensibilización o educación ambiental.",
+        "Se admiten proyectos de investigación, restauración o conservación.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "educacion-ambiental": {
+      name: "Educación Ambiental",
+      description: "Programas que fomentan la conciencia ecológica en la sociedad.",
+      bases: [
+        "El proyecto debe tener un enfoque educativo sobre medio ambiente y sostenibilidad.",
+        "Se valorará el alcance y la participación generada.",
+        "Debe demostrarse un cambio de comportamiento o concienciación.",
+        "Se admiten proyectos formales e informales de educación.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "agricultura-sostenible": {
+      name: "Agricultura Sostenible",
+      description: "Prácticas agrícolas que respetan el medio ambiente.",
+      bases: [
+        "El proyecto debe promover prácticas agrícolas sostenibles y regenerativas.",
+        "Se valorará la reducción del impacto ambiental de la actividad agrícola.",
+        "Debe presentarse evidencia de resultados o un plan de implementación.",
+        "Se admiten proyectos de agricultura, ganadería o agroalimentación.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "arquitectura-verde": {
+      name: "Arquitectura Verde",
+      description: "Construcciones eficientes y respetuosas con el entorno.",
+      bases: [
+        "El proyecto debe incorporar principios de arquitectura sostenible o bioclimática.",
+        "Se valorará la eficiencia energética y el uso de materiales sostenibles.",
+        "Debe presentarse documentación técnica del proyecto.",
+        "Se admiten proyectos construidos o en fase de diseño avanzado.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+    "impacto-social": {
+      name: "Impacto Social",
+      description: "Proyectos que combinan sostenibilidad con justicia social.",
+      bases: [
+        "El proyecto debe generar un impacto social positivo vinculado a la sostenibilidad.",
+        "Se valorará la inclusión de comunidades vulnerables o marginadas.",
+        "Debe presentarse evidencia del beneficio social generado.",
+        "Se admiten proyectos de cualquier ámbito que combinen lo social y lo ambiental.",
+        "La inscripción debe realizarse dentro del plazo establecido.",
+      ],
+    },
+  };
+
+  return Object.entries(categories).map(([slug, category]) => ({
+    params: { slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props as { category: Category };
+---
+
+<Layout title={`Premios Huella - ${category.name}`}>
+  <Navbar client:load />
+  <main>
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-neutral-950">
+      <div class="absolute inset-0 bg-gradient-to-b from-huella-900/20 to-neutral-950" />
+      <div class="relative z-10 text-center px-6 pt-24">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4">
+          {category.name}
+        </h1>
+        <p class="text-lg text-neutral-300 max-w-2xl mx-auto">
+          {category.description}
+        </p>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
+    </section>
+
+    <section class="py-24 bg-white dark:bg-neutral-950">
+      <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-12 text-center">
+          Bases de la Categoría
+        </h2>
+        <ol class="space-y-6">
+          {category.bases.map((base, index) => (
+            <li class="flex gap-4 items-start">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-huella-100 dark:bg-huella-900/50 text-huella-700 dark:text-huella-300 flex items-center justify-center font-bold text-lg">
+                {index + 1}
+              </span>
+              <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed pt-2">
+                {base}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div class="mt-16 text-center">
+          <a
+            href="#"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-bold uppercase tracking-wider bg-huella-600 hover:bg-huella-700 transition-colors"
+          >
+            Participar
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer client:visible />
+</Layout>

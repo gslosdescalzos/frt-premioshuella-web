@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { HeroHeader } from "../components/HeroHeader";
+import { LosPremios } from "../components/LosPremios";
+import { CategoriasGrid } from "../components/CategoriasGrid";
+import { Participacion } from "../components/Participacion";
+import { ColaboraSection } from "../components/ColaboraSection";
+import { ContactForm } from "../components/ContactForm";
+import { Footer } from "../components/Footer";
+---
+
+<Layout title="Premios Huella - Inicio">
+  <Navbar client:load />
+  <main>
+    <HeroHeader
+      client:load
+      title="Premios Huella"
+      subtitle="Reconociendo la sostenibilidad y el impacto positivo en nuestra comunidad"
+    />
+    <LosPremios client:visible />
+    <CategoriasGrid client:visible />
+    <Participacion client:visible />
+    <ColaboraSection client:visible />
+    <ContactForm client:visible />
+  </main>
+  <Footer client:visible />
+</Layout>

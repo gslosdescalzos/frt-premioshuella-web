@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { FAQAccordion } from "../components/FAQAccordion";
+import { Footer } from "../components/Footer";
+---
+
+<Layout title="Premios Huella - FAQ">
+  <Navbar client:load />
+  <main>
+    <section class="pt-32 pb-24 bg-white dark:bg-neutral-950">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-4">
+            Preguntas Frecuentes
+          </h1>
+          <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            Encuentra respuestas a las preguntas más comunes sobre los Premios Huella.
+          </p>
+        </div>
+        <FAQAccordion client:visible />
+      </div>
+    </section>
+  </main>
+  <Footer client:visible />
+</Layout>
