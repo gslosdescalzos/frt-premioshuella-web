@@ -11,6 +11,66 @@ interface Category {
 
 export function getStaticPaths() {
   const categories: Record<string, Category> = {
+    "foto-scout": {
+      name: "Foto scout",
+      description: "Categoría de fotografía scout.",
+      bases: ["Bases por definir."],
+    },
+    "videoclip-musical-original": {
+      name: "Videoclip musical original",
+      description: "Categoría de videoclip musical original.",
+      bases: ["Bases por definir."],
+    },
+    "deportista-scout": {
+      name: "Deportista scout",
+      description: "Categoría de deportista scout.",
+      bases: ["Bases por definir."],
+    },
+    "construccion-scout": {
+      name: "Construccion scout",
+      description: "Categoría de construcción scout.",
+      bases: ["Bases por definir."],
+    },
+    "simbologia-scout": {
+      name: "Simbología scout",
+      description: "Categoría de simbología scout.",
+      bases: ["Bases por definir."],
+    },
+    "habilidades-pionerismo": {
+      name: "Habilidades de pionerismo",
+      description: "Categoría de habilidades de pionerismo.",
+      bases: ["Bases por definir."],
+    },
+    "artista-scout": {
+      name: "Artista scout",
+      description: "Categoría de artista scout.",
+      bases: ["Bases por definir."],
+    },
+    "emprendimiento-joven": {
+      name: "Emprendimiento joven",
+      description: "Categoría de emprendimiento joven.",
+      bases: ["Bases por definir."],
+    },
+    "representacion-cultural-jerezana": {
+      name: "Representación cultural jerezana",
+      description: "Categoría de representación cultural jerezana.",
+      bases: ["Bases por definir."],
+    },
+    "accion-social": {
+      name: "Acción social",
+      description: "Categoría de acción social.",
+      bases: ["Bases por definir."],
+    },
+    "grupo-del-ano": {
+      name: "Grupo del año",
+      description: "Categoría grupo del año.",
+      bases: ["Bases por definir."],
+    },
+    "scout-del-ano": {
+      name: "Scout del año",
+      description: "Categoría scout del año.",
+      bases: ["Bases por definir."],
+    },
     "innovacion-verde": {
       name: "Innovación Verde",
       description: "Proyectos que transforman la industria con soluciones sostenibles.",
@@ -158,7 +218,7 @@ const { category } = Astro.props as { category: Category };
         <div class="mt-16 text-center">
           <a
             href="#"
-            class="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-bold uppercase tracking-wider bg-huella-600 hover:bg-huella-700 transition-colors"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-bold uppercase tracking-wider bg-accent-600 hover:bg-accent-700 transition-colors"
           >
             Participar
           </a>

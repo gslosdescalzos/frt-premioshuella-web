@@ -14,11 +14,12 @@ export const Participacion = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative"
           >
-            <div className="aspect-video rounded-2xl bg-gradient-to-br from-accent-200 to-accent-400 dark:from-accent-800 dark:to-accent-600 flex items-center justify-center overflow-hidden">
-              <div className="text-center p-8">
-                <div className="text-6xl mb-4">🏆</div>
-                <p className="text-white font-bold text-xl">Participa y deja tu huella</p>
-              </div>
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+              <img
+                src="/images/participa.webp"
+                alt="Participa y deja tu huella"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
 

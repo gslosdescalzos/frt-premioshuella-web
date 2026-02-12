@@ -32,7 +32,7 @@ export const MovingBorderButton = ({
       <span
         className={cn(
           "absolute inset-[-1000%] animate-[spin_3s_linear_infinite]",
-          "bg-[conic-gradient(from_90deg_at_50%_50%,#22c55e_0%,#f59e0b_50%,#22c55e_100%)]",
+          "bg-[conic-gradient(from_90deg_at_50%_50%,#c62519_0%,#009aa8_50%,#ffaa04_100%)]",
           borderClassName
         )}
       />

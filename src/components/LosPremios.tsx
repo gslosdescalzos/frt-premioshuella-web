@@ -13,12 +13,12 @@ export const LosPremios = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative"
           >
-            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-huella-200 to-huella-400 dark:from-huella-800 dark:to-huella-600 flex items-center justify-center overflow-hidden">
-              <div className="text-center p-8">
-                <div className="text-6xl mb-4">🌿</div>
-                <p className="text-white font-bold text-2xl">CARTEL</p>
-                <p className="text-white/80 text-sm mt-2">Premios Huella 2026</p>
-              </div>
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+              <img
+                src="/images/cartel.webp"
+                alt="Cartel Premios Huella 2026"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
 

@@ -65,7 +65,7 @@ export const ModalNewsletter = ({ open, onOpenChange }: ModalNewsletterProps) =>
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-3 px-6 rounded-xl bg-huella-600 hover:bg-huella-700 disabled:bg-huella-400 text-white font-semibold transition-colors uppercase tracking-wider"
+              className="w-full py-3 px-6 rounded-xl bg-accent-600 hover:bg-accent-700 disabled:bg-accent-400 text-white font-semibold transition-colors uppercase tracking-wider"
             >
               {status === "loading" ? "Enviando..." : "Subscribirme"}
             </button>

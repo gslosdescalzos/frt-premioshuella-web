@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { FloatingNavbar } from "./ui/floating-navbar";
-import { ThemeToggle } from "./ThemeToggle";
+import { useState } from "react";
 import { ModalNewsletter } from "./ModalNewsletter";
+import { ThemeToggle } from "./ThemeToggle";
+import { FloatingNavbar } from "./ui/floating-navbar";
 
 export const Navbar = () => {
   const [newsletterOpen, setNewsletterOpen] = useState(false);
@@ -23,8 +23,17 @@ export const Navbar = () => {
       <FloatingNavbar
         navItems={navItems}
         logo={
-          <a href="/" className="text-xl font-bold text-huella-600 dark:text-huella-400">
-            Premios Huella
+          <a href="/" className="flex items-center">
+            <img
+              src="/images/logos/logo-white.png"
+              alt="Premios Huella"
+              className="h-10 w-auto block dark:hidden"
+            />
+            <img
+              src="/images/logos/logo-blue.png"
+              alt="Premios Huella"
+              className="h-10 w-auto hidden dark:block"
+            />
           </a>
         }
         rightElement={<ThemeToggle />}
