@@ -67,3 +67,59 @@ export async function submitColabora(payload: {
     body: JSON.stringify(payload),
   });
 }
+
+export interface CategoryDTO {
+  id: number;
+  name: string;
+  description: string | null;
+}
+
+export async function getCategoryByName(
+  name: string
+): Promise<ApiResponse<CategoryDTO[]>> {
+  return request<CategoryDTO[]>(
+    `/category?name=${encodeURIComponent(name)}`
+  );
+}
+
+export async function submitParticipation(
+  categoryId: number,
+  formData: Record<string, string>,
+  files: File[]
+): Promise<ApiResponse<unknown>> {
+  const body = new FormData();
+
+  Object.entries(formData).forEach(([key, value]) => {
+    body.append(key, value);
+  });
+
+  files.forEach((file) => {
+    body.append("files", file);
+  });
+
+  try {
+    const response = await fetch(
+      `${BASE_URL}/category/${categoryId}/participate`,
+      {
+        method: "POST",
+        body,
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      return {
+        error:
+          errorData?.detail ||
+          `Error ${response.status}: ${response.statusText}`,
+      };
+    }
+
+    const data = await response.json();
+    return { data };
+  } catch (err) {
+    return {
+      error: err instanceof Error ? err.message : "Error de conexión",
+    };
+  }
+}
