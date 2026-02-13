@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { ModalParticipacion } from "./ModalParticipacion";
 import { isOpenCategory } from "@/lib/categories";
+import { useState } from "react";
+import { ModalParticipacion } from "./ModalParticipacion";
+import { MovingBorderButton } from "./ui/moving-border";
 
 interface ParticiparButtonProps {
   categoryName: string;
@@ -16,12 +17,12 @@ export const ParticiparButton = ({
 
   return (
     <>
-      <button
+      <MovingBorderButton
         onClick={() => setModalOpen(true)}
-        className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-bold uppercase tracking-wider bg-accent-600 hover:bg-accent-700 transition-colors"
+        className="font-bold uppercase tracking-wider"
       >
         Participar
-      </button>
+      </MovingBorderButton>
 
       <ModalParticipacion
         open={modalOpen}

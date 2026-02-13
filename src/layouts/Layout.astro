@@ -2,19 +2,43 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description = "Premios Huella - Reconociendo la sostenibilidad y el impacto positivo" } = Astro.props;
+const { title, description = "Premios Huella - Las buenas acciones que dejan marca", image = "/images/cartel.webp", canonicalUrl } = Astro.props;
+
+const site = import.meta.env.SITE ?? `${Astro.url.protocol}//${Astro.url.host}`;
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, site).href;
+const imageUrl = new URL(image.startsWith("/") ? image : `/${image}`, site).href;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Premios Huella" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Premios Huella" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="Premios Huella" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
   </head>
   <body class="min-h-screen overflow-x-hidden">
     <slot />
@@ -22,20 +46,7 @@ const { title, description = "Premios Huella - Reconociendo la sostenibilidad y 
 </html>
 
 <script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
+  document.documentElement.classList.add("dark");
 </script>
 
 <style is:global>

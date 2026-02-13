@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { FileUpload } from "./ui/file-upload";
-import { StatefulButton } from "./ui/stateful-button";
 import { getCategoryByName, submitParticipation } from "@/lib/api";
 import { SCOUT_GROUPS } from "@/lib/categories";
+import { useState } from "react";
+import { FileUpload } from "./ui/file-upload";
+import { StatefulButton } from "./ui/stateful-button";
 
 interface ParticipationFormProps {
   categoryName: string;
@@ -10,6 +10,13 @@ interface ParticipationFormProps {
 
 const inputClasses =
   "w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-huella-500 focus:border-transparent outline-none transition-shadow";
+
+function isValidPhone(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length < 9 || digits.length > 15) return false;
+  if (digits.length === 9 && !/^[6789]/.test(digits)) return false;
+  return true;
+}
 
 export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   const [isScout, setIsScout] = useState<boolean | null>(null);
@@ -20,10 +27,49 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{
+    phone?: string;
+    description?: string;
+    files?: string;
+    scoutGroup?: string;
+  }>({});
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async () => {
     setError("");
+    setFieldErrors({});
+
+    if (!isValidPhone(phone)) {
+      setFieldErrors((e) => ({
+        ...e,
+        phone: "Introduce un teléfono válido (9 dígitos, ej. 612345678)",
+      }));
+      throw new Error("Invalid phone");
+    }
+
+    if (!description.trim()) {
+      setFieldErrors((e) => ({
+        ...e,
+        description: "La descripción es obligatoria",
+      }));
+      throw new Error("Description required");
+    }
+
+    if (files.length === 0) {
+      setFieldErrors((e) => ({
+        ...e,
+        files: "Debes subir al menos un archivo",
+      }));
+      throw new Error("Files required");
+    }
+
+    if (isScout && !scoutGroup.trim()) {
+      setFieldErrors((e) => ({
+        ...e,
+        scoutGroup: "Debes seleccionar un grupo Scout",
+      }));
+      throw new Error("Scout group required");
+    }
 
     const categoryResult = await getCategoryByName(categoryName);
     if (categoryResult.error || !categoryResult.data?.length) {
@@ -143,14 +189,17 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
                 htmlFor="scout-group"
                 className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
               >
-                Grupo Scout
+                Grupo Scout <span className="text-red-500">*</span>
               </label>
               <select
                 id="scout-group"
                 required
                 value={scoutGroup}
-                onChange={(e) => setScoutGroup(e.target.value)}
-                className={inputClasses}
+                onChange={(e) => {
+                  setScoutGroup(e.target.value);
+                  setFieldErrors((prev) => ({ ...prev, scoutGroup: undefined }));
+                }}
+                className={`${inputClasses} ${fieldErrors.scoutGroup ? "border-red-500 dark:border-red-500" : ""}`}
               >
                 <option value="">Selecciona tu grupo</option>
                 {SCOUT_GROUPS.map((group) => (
@@ -159,6 +208,9 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
                   </option>
                 ))}
               </select>
+              {fieldErrors.scoutGroup && (
+                <p className="mt-1 text-sm text-red-500">{fieldErrors.scoutGroup}</p>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -202,16 +254,23 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
               htmlFor="phone"
               className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
             >
-              Teléfono
+              Teléfono <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
               id="phone"
               required
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className={inputClasses}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                setFieldErrors((prev) => ({ ...prev, phone: undefined }));
+              }}
+              className={`${inputClasses} ${fieldErrors.phone ? "border-red-500 dark:border-red-500" : ""}`}
+              placeholder="612345678"
             />
+            {fieldErrors.phone && (
+              <p className="mt-1 text-sm text-red-500">{fieldErrors.phone}</p>
+            )}
           </div>
 
           <div>
@@ -219,23 +278,39 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
               htmlFor="description"
               className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
             >
-              Descripción
+              Descripción de la participación <span className="text-red-500">*</span>
             </label>
             <textarea
               id="description"
               rows={5}
               required
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className={`${inputClasses} resize-none`}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                setFieldErrors((prev) => ({ ...prev, description: undefined }));
+              }}
+              className={`${inputClasses} resize-none ${fieldErrors.description ? "border-red-500 dark:border-red-500" : ""}`}
             />
+            {fieldErrors.description && (
+              <p className="mt-1 text-sm text-red-500">{fieldErrors.description}</p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Archivos
+              Archivos <span className="text-red-500">*</span>
             </label>
-            <FileUpload onChange={setFiles} />
+            <FileUpload
+              onChange={(newFiles) => {
+                setFiles(newFiles);
+                if (newFiles.length > 0) {
+                  setFieldErrors((prev) => ({ ...prev, files: undefined }));
+                }
+              }}
+            />
+            {fieldErrors.files && (
+              <p className="mt-1 text-sm text-red-500">{fieldErrors.files}</p>
+            )}
           </div>
 
           {error && (

@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "motion/react";
 import { MovingBorderButton } from "./ui/moving-border";
 
@@ -45,7 +44,7 @@ export const Participacion = () => {
                 viabilidad.
               </p>
             </div>
-            <MovingBorderButton as="a" href="#" className="font-bold uppercase tracking-wider">
+            <MovingBorderButton as="a" href="#categorias" className="font-bold uppercase tracking-wider">
               Participar
             </MovingBorderButton>
           </motion.div>

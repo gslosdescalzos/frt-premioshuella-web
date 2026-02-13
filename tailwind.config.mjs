@@ -36,15 +36,10 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       animation: {
-        spotlight: "spotlight 2s ease .75s 1 forwards",
         "moving-border": "moving-border 4s linear infinite",
         "text-generate": "text-generate 0.3s ease forwards",
       },
       keyframes: {
-        spotlight: {
-          "0%": { opacity: "0", transform: "translate(-72%, -62%) scale(0.5)" },
-          "100%": { opacity: "1", transform: "translate(-50%, -40%) scale(1)" },
-        },
         "moving-border": {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },

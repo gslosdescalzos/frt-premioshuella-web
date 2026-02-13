@@ -8,7 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-export const Button = ({ className, children, ...props }: ButtonProps) => {
+export const StatefulButton = ({ className, children, ...props }: ButtonProps) => {
   const [scope, animate] = useAnimate();
 
   const animateLoading = async () => {

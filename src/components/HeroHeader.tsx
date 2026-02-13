@@ -1,33 +1,57 @@
-import { Spotlight } from "./ui/spotlight";
+import { LogoCloud } from "./LogoCloud";
+import { FlipWords } from "./ui/flip-words";
+import { Spotlight } from "./ui/spotlight-new";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { TypewriterEffect } from "./ui/typewritter-efect";
 
 interface HeroHeaderProps {
   title?: string;
-  subtitle?: string;
   showSocialIcons?: boolean;
 }
 
+const spotlightGradientFirst =
+  "radial-gradient(68.54% 68.72% at 55.02% 31.46%, rgba(255,255,255,.18) 0, rgba(0,154,168,.08) 50%, transparent 80%)";
+const spotlightGradientSecond =
+  "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.14) 0, rgba(0,154,168,.06) 80%, transparent 100%)";
+const spotlightGradientThird =
+  "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.1) 0, rgba(0,154,168,.04) 80%, transparent 100%)";
+
 export const HeroHeader = ({
   title = "Premios Huella",
-  subtitle,
   showSocialIcons = true,
 }: HeroHeaderProps) => {
   return (
-    <div className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-neutral-950 dark:bg-neutral-950">
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#c62519" />
-      <Spotlight className="-top-40 right-0 md:right-60 md:-top-20" fill="#009aa8" />
+    <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex flex-col items-center justify-start pt-8 sm:justify-center sm:pt-0 overflow-hidden bg-neutral-950 dark:bg-neutral-950">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-16 md:mb-24">
+        <TypewriterEffect
+          words={[
+            { text: "Los", className: "text-huella-400" },
+            { text: "Descalzos", className: "text-huella-400" },
+            { text: "presentan", className: "text-huella-400" },
+          ]}
+          className="text-base sm:text-xl md:text-2xl lg:text-3xl text-huella-400 max-w-2xl mx-auto mt-2 sm:mt-6"
+          cursorClassName="bg-huella-400 h-2 sm:h-5 md:h-6"
+        />
+      </div>
+      <Spotlight
+        gradientFirst={spotlightGradientFirst}
+        gradientSecond={spotlightGradientSecond}
+        gradientThird={spotlightGradientThird}
+      />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <TextGenerateEffect
           words={title}
-          className="text-5xl md:text-7xl lg:text-8xl font-black text-white"
+          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white"
         />
 
-        {subtitle && (
-          <p className="mt-6 text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        )}
+        <p className="mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl text-neutral-300 max-w-2xl mx-auto">
+          Las buenas acciones que{" "}
+          <FlipWords
+            words={["dejan marca", "cambian vidas", "hacen un mundo mejor", "construyen"]}
+            className="text-huella-400 font-semibold"
+          />
+        </p>
 
         {showSocialIcons && (
           <div className="mt-10 flex items-center justify-center gap-6">
@@ -65,7 +89,11 @@ export const HeroHeader = ({
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
+      <div className="absolute bottom-0 right-0 z-20 pb-6 pr-4 sm:pr-6">
+        <LogoCloud />
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent pointer-events-none" />
     </div>
   );
 };

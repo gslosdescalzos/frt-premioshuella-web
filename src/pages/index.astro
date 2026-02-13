@@ -13,11 +13,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Premios Huella - Inicio">
   <Navbar client:load />
   <main>
-    <HeroHeader
-      client:load
-      title="PREMIOS HUELLA"
-      subtitle="Las buenas acciones que dejan marca"
-    />
+    <HeroHeader client:load title="PREMIOS HUELLA" />
     <LosPremios client:visible />
     <CategoriasGrid client:visible />
     <Participacion client:visible />
