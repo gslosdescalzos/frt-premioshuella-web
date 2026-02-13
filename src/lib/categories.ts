@@ -101,8 +101,8 @@ export const categories: Record<string, Category> = {
     description: "Categoría de habilidades de pionerismo.",
     bases: [
       "Demostración de mejores habilidades de supervivencia en entornos naturales.",
-      "Mejores técnicas de progresión en montaña.",
-      "Mayores conocimientos de montañismo.",
+      "Demostración de mejores técnicas de progresión en montaña.",
+      "Demostración de mayores conocimientos de montañismo.",
       "Se deberá de adjuntar un vídeo explicativo donde se puedan ver las diferentes técnicas.",
     ],
   },
@@ -110,7 +110,8 @@ export const categories: Record<string, Category> = {
     name: "Artista scout",
     description: "Categoría de artista scout.",
     bases: [
-      "Podrá ser un vídeo o una foto original donde se aprecie una habilidad artística del concursante, como por ejemplo, un vídeo bailando, cantando, tocando la guitarra, manualidades, espectáculo de magia, una foto de un cuadro…",
+      "Podrá ser un vídeo o una foto original donde se aprecie una habilidad artística del concursante.",
+      "Ejemplos: un vídeo bailando, cantando, tocando la guitarra, manualidades, espectáculo de magia, una foto de un cuadro…",
     ],
   },
   "emprendimiento-joven": {
@@ -118,16 +119,16 @@ export const categories: Record<string, Category> = {
     description: "Categoría de emprendimiento joven.",
     bases: [
       "Debe de tener menos de 30 años.",
-      "Elevator speech de 1 minuto de presentación del proyecto con los puntos clave.",
+      "Se deberá de entregar un vídeo, estilo 'elevator speech', como presentación del proyecto con los puntos clave.",
     ],
   },
   "representacion-cultural-jerezana": {
     name: "Representación cultural jerezana",
     description: "Categoría de representación cultural jerezana.",
     bases: [
+      "El participante debe de tener menos de 30 años.",
       "Debe de estar enfocada en la cultura jerezana, arte, gastronomía, flamenco, poesía, literatura, fotografía…",
       "El formato podrá ser de cualquier tipo, vídeo, fotografía, documento…",
-      "El participante debe de tener menos de 30 años.",
     ],
   },
   "accion-social": {
@@ -142,123 +143,16 @@ export const categories: Record<string, Category> = {
     name: "Grupo del año",
     description: "Categoría grupo del año.",
     bases: [
-      "Presentar una memoria con los puntos claves realizados durante el año.",
-      "Vídeo.",
-      "Infografía.",
-      "Memoria (proyectos realizados durante el año).",
-      "En esta categoría el público tiene el 50% de los votos, el resto, será decidido por un jurado seleccionado.",
-      "Añadir foto de grupo para adjuntar en la página.",
+      "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
+      "Se deberá de adjuntar una foto del grupo para adjuntar en la página.",
     ],
   },
   "scout-del-ano": {
     name: "Scout del año",
     description: "Categoría scout del año.",
     bases: [
-      "Presentar una memoria con los puntos claves realizados durante el año.",
-      "Vídeo.",
-      "Infografía.",
-      "Memoria (proyectos realizados durante el año).",
-      "En esta categoría el público tiene el 50% de los votos, el resto, será decidido por un jurado seleccionado.",
-      "Adjuntar foto del scout para adjuntar en la página.",
-    ],
-  },
-  "innovacion-verde": {
-    name: "Innovación Verde",
-    description: "Proyectos que transforman la industria con soluciones sostenibles.",
-    bases: [
-      "El proyecto debe estar relacionado con innovación tecnológica aplicada a la sostenibilidad.",
-      "Se valorará el impacto medioambiental medible del proyecto.",
-      "El proyecto debe haberse implementado o estar en fase avanzada de desarrollo.",
-      "Se admiten proyectos individuales o colectivos.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "economia-circular": {
-    name: "Economía Circular",
-    description: "Iniciativas que promueven la reutilización y reducción de residuos.",
-    bases: [
-      "El proyecto debe promover principios de economía circular: reducir, reutilizar, reciclar.",
-      "Se valorará la capacidad de escalabilidad de la iniciativa.",
-      "Debe presentarse evidencia del impacto positivo generado.",
-      "Se admiten proyectos de cualquier sector económico.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "movilidad-sostenible": {
-    name: "Movilidad Sostenible",
-    description: "Alternativas de transporte que reducen la huella de carbono.",
-    bases: [
-      "El proyecto debe abordar la movilidad urbana o interurbana sostenible.",
-      "Se valorarán soluciones innovadoras y viables.",
-      "Debe demostrarse la reducción de emisiones de CO₂.",
-      "Se admiten proyectos tecnológicos, de infraestructura o comunitarios.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "energias-renovables": {
-    name: "Energías Renovables",
-    description: "Proyectos que impulsan la transición energética limpia.",
-    bases: [
-      "El proyecto debe estar relacionado con energías renovables o eficiencia energética.",
-      "Se valorará la innovación y el impacto en la comunidad.",
-      "Debe presentarse un plan de viabilidad o resultados obtenidos.",
-      "Se admiten proyectos a cualquier escala.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "biodiversidad": {
-    name: "Biodiversidad",
-    description: "Acciones para la conservación y restauración de ecosistemas.",
-    bases: [
-      "El proyecto debe contribuir a la conservación o restauración de la biodiversidad.",
-      "Se valorará el impacto medible en ecosistemas locales o globales.",
-      "Debe incluir un componente de sensibilización o educación ambiental.",
-      "Se admiten proyectos de investigación, restauración o conservación.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "educacion-ambiental": {
-    name: "Educación Ambiental",
-    description: "Programas que fomentan la conciencia ecológica en la sociedad.",
-    bases: [
-      "El proyecto debe tener un enfoque educativo sobre medio ambiente y sostenibilidad.",
-      "Se valorará el alcance y la participación generada.",
-      "Debe demostrarse un cambio de comportamiento o concienciación.",
-      "Se admiten proyectos formales e informales de educación.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "agricultura-sostenible": {
-    name: "Agricultura Sostenible",
-    description: "Prácticas agrícolas que respetan el medio ambiente.",
-    bases: [
-      "El proyecto debe promover prácticas agrícolas sostenibles y regenerativas.",
-      "Se valorará la reducción del impacto ambiental de la actividad agrícola.",
-      "Debe presentarse evidencia de resultados o un plan de implementación.",
-      "Se admiten proyectos de agricultura, ganadería o agroalimentación.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "arquitectura-verde": {
-    name: "Arquitectura Verde",
-    description: "Construcciones eficientes y respetuosas con el entorno.",
-    bases: [
-      "El proyecto debe incorporar principios de arquitectura sostenible o bioclimática.",
-      "Se valorará la eficiencia energética y el uso de materiales sostenibles.",
-      "Debe presentarse documentación técnica del proyecto.",
-      "Se admiten proyectos construidos o en fase de diseño avanzado.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
-    ],
-  },
-  "impacto-social": {
-    name: "Impacto Social",
-    description: "Proyectos que combinan sostenibilidad con justicia social.",
-    bases: [
-      "El proyecto debe generar un impacto social positivo vinculado a la sostenibilidad.",
-      "Se valorará la inclusión de comunidades vulnerables o marginadas.",
-      "Debe presentarse evidencia del beneficio social generado.",
-      "Se admiten proyectos de cualquier ámbito que combinen lo social y lo ambiental.",
-      "La inscripción debe realizarse dentro del plazo establecido.",
+      "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
+      "Se deberá de adjuntar una foto del scout para adjuntar en la página.",
     ],
   },
 };
