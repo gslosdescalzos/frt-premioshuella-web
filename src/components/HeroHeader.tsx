@@ -21,16 +21,16 @@ export const HeroHeader = ({
   showSocialIcons = true,
 }: HeroHeaderProps) => {
   return (
-    <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex flex-col items-center justify-start pt-8 sm:justify-center sm:pt-0 overflow-hidden bg-neutral-950 dark:bg-neutral-950">
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-16 md:mb-24">
+    <div className="relative min-h-fit md:min-h-[80vh] flex flex-col items-center justify-start pt-8 sm:pt-12 md:justify-center md:pt-0 overflow-hidden bg-neutral-950 dark:bg-neutral-950">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center mb-2 sm:mb-8 md:mb-24">
         <TypewriterEffect
           words={[
             { text: "Los", className: "text-huella-400" },
             { text: "Descalzos", className: "text-huella-400" },
             { text: "presentan", className: "text-huella-400" },
           ]}
-          className="text-base sm:text-xl md:text-2xl lg:text-3xl text-huella-400 max-w-2xl mx-auto mt-2 sm:mt-6"
-          cursorClassName="bg-huella-400 h-2 sm:h-5 md:h-6"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-huella-400 max-w-2xl mx-auto mt-2 sm:mt-6"
+          cursorClassName="bg-huella-400 h-3 sm:h-5 md:h-6"
         />
       </div>
       <Spotlight
@@ -42,7 +42,7 @@ export const HeroHeader = ({
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <TextGenerateEffect
           words={title}
-          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white"
+          className="text-[15vw] sm:text-[12vw] md:text-8xl lg:text-9xl font-black text-white leading-[0.9]"
         />
 
         <p className="mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl text-neutral-300 max-w-2xl mx-auto">
@@ -89,7 +89,7 @@ export const HeroHeader = ({
         )}
       </div>
 
-      <div className="absolute bottom-0 right-0 z-20 pb-6 pr-4 sm:pr-6">
+      <div className="relative z-20 mt-10 pb-6 md:absolute md:bottom-0 md:right-0 md:mt-0 md:pr-6">
         <LogoCloud />
       </div>
 

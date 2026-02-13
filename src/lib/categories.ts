@@ -37,11 +37,11 @@ export function isOpenCategory(slug: string): boolean {
 }
 
 export const participationRules: string[] = [
-  "Dentro de todas estas categorías se deberá facilitar siempre los derechos de la pieza audiovisual (foto o vídeo) y de las personas que aparezcan en ella. Además, las piezas entregadas deberán ser originales, hechas por uno mismo y sin ayuda de la inteligencia artificial.",
-  "Vídeos de no más de 2 minutos, excepto en casos puntuales. (Revisar reglas de la categoría)",
-  "Se podrá participar de manera colectiva, es decir como grupo scout, o como persona física.",
+  "En caso de añadir contenido audivisual, el participante deberá de ceder los derechos de la pieza audiovisual al grupo scout Los Descalzos. Además, las piezas entregadas deberán ser originales, hechas por uno mismo y sin ayuda de la inteligencia artificial.",
+  "Los vídeos deben de tener una duración máxima de 2 minutos, excepto en casos puntuales. (Revisar bases de la categoría)",
+  "La participación será por grupos scouts, en caso de no pertenecer a ningún grupo, se podrá enviar de manera individual especificándolo en el formulario. Para algunas categorías se podrá participar de manera individual.",
   "Serán descalificadas cualquier participación que no esté de acuerdo con los valores scout, tal como violencia, incitación al odio, faltas de respeto, etc.",
-  "Se deberán de entregar las participaciones en tiempo y forma.",
+  "sLas participaciones sólo serán validas si son enviadas en tiempo y forma",
   "En caso de haber participación de menores esta deberá de venir acompañada por una autorización del tutor legal.",
   "Cada grupo podrá enviar una sola candidatura por categoría, en caso de no pertenecer a ningún grupo se podrá enviar de manera individual. En caso de presentar más de una candidatura por grupo se avisará al grupo para corregirlo. En caso de que el grupo no participe en los premios, los niños y niñas del grupo podrán hacerlo de manera libre.",
 ];
@@ -53,7 +53,7 @@ export const categories: Record<string, Category> = {
     bases: [
       "Foto relacionada con el escultismo.",
       "Puede haber sido realizada en cualquier año, siempre que siga las reglas del concurso.",
-      "Breve descripción y título.",
+      "Se debe de adjuntar breve descripción y título.",
     ],
   },
   "videoclip-musical-original": {
