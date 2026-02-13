@@ -1,3 +1,4 @@
+import { participationSummary } from "@/lib/categories";
 import { motion } from "motion/react";
 import { MovingBorderButton } from "./ui/moving-border";
 
@@ -31,18 +32,9 @@ export const Participacion = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
               Participación
             </h2>
-            <div className="space-y-4 text-neutral-600 dark:text-neutral-300 leading-relaxed mb-8">
-              <p>
-                Participar en los Premios Huella es sencillo. Solo necesitas tener un
-                proyecto o iniciativa que esté generando un impacto positivo en el medio
-                ambiente o la sociedad.
-              </p>
-              <p>
-                Selecciona la categoría que mejor represente tu proyecto, completa el
-                formulario de inscripción y comparte tu historia con nosotros. Nuestro
-                jurado evaluará cada candidatura con criterios de innovación, impacto y
-                viabilidad.
-              </p>
+            <div className="space-y-4 text-neutral-600 dark:text-neutral-300 text-justify leading-relaxed mb-8">
+              <p>{participationSummary.p1}</p>
+              <p>{participationSummary.p2}</p>
             </div>
             <MovingBorderButton as="a" href="#categorias" className="font-bold uppercase tracking-wider">
               Participar

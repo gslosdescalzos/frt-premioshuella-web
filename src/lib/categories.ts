@@ -41,10 +41,15 @@ export const participationRules: string[] = [
   "Los vídeos deben de tener una duración máxima de 2 minutos, excepto en casos puntuales. (Revisar bases de la categoría)",
   "La participación será por grupos scouts, en caso de no pertenecer a ningún grupo, se podrá enviar de manera individual especificándolo en el formulario. Para algunas categorías se podrá participar de manera individual.",
   "Serán descalificadas cualquier participación que no esté de acuerdo con los valores scout, tal como violencia, incitación al odio, faltas de respeto, etc.",
-  "sLas participaciones sólo serán validas si son enviadas en tiempo y forma",
+  "Las participaciones sólo serán validas si son enviadas en tiempo y forma",
   "En caso de haber participación de menores esta deberá de venir acompañada por una autorización del tutor legal.",
   "Cada grupo podrá enviar una sola candidatura por categoría, en caso de no pertenecer a ningún grupo se podrá enviar de manera individual. En caso de presentar más de una candidatura por grupo se avisará al grupo para corregirlo. En caso de que el grupo no participe en los premios, los niños y niñas del grupo podrán hacerlo de manera libre.",
 ];
+
+export const participationSummary = {
+  p1: "La participación es por grupos scouts o de manera individual si no perteneces a ningún grupo (indícalo en el formulario). Cada grupo puede enviar una sola candidatura por categoría. Las piezas deben ser originales, sin ayuda de inteligencia artificial. Los vídeos tienen una duración máxima de 2 minutos salvo excepciones. Serán descalificadas las propuestas que no respeten los valores scout.",
+  p2: "Las participaciones solo son válidas si se envían en tiempo y forma. Los menores deben ir acompañados de una autorización del tutor legal. El contenido audiovisual requiere la cesión de derechos al grupo scout Los Descalzos.",
+} as const;
 
 export const categories: Record<string, Category> = {
   "foto-scout": {
