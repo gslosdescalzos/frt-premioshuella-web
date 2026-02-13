@@ -20,13 +20,13 @@ export const ColaboraSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <ColaboraCard
             title="Artista"
-            description="¿Eres artista y quieres contribuir con tu talento? Participa en los Premios Huella aportando tu creatividad y visión artística a favor de la sostenibilidad."
+            description="¿Eres artista y quieres contribuir con tu talento? Participa en los Premios Huella aportando tu creatividad y visión artística para que esta gala sea inolvidable."
             gradient="bg-gradient-to-br from-huella-600 to-huella-800"
             onColabora={() => setModalOpen(true)}
           />
           <ColaboraCard
             title="Stand"
-            description="¿Tienes una marca o proyecto sostenible? Monta tu stand en el evento de los Premios Huella y conecta con una audiencia comprometida con el medio ambiente."
+            description="¿Tienes una marca, proyecto de emprendimiento o de comercio local? Monta tu stand en el evento de los Premios Huella y contribuye al comercio jerezano."
             gradient="bg-gradient-to-br from-accent-600 to-accent-800"
             onColabora={() => setModalOpen(true)}
           />
