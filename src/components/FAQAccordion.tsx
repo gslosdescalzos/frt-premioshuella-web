@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
 interface FAQItem {
   question: string;
@@ -11,17 +11,17 @@ const faqItems: FAQItem[] = [
   {
     question: "¿Quién puede participar en los Premios Huella?",
     answer:
-      "Cualquier persona, empresa, organización o colectivo que tenga un proyecto o iniciativa con impacto positivo en el medio ambiente o la sociedad puede presentar su candidatura. No hay restricciones de edad, nacionalidad o sector.",
+      "Cualquier persona o grupo scout tanto de ASDE como de MSC pueden participar en todas las categorías, exceptuando aquellas que estén limitadas para scouts. ¡Revisa las categorías abiertas al público!",
   },
   {
     question: "¿Cuál es el plazo de inscripción?",
     answer:
-      "El plazo de inscripción se abrirá próximamente. Te recomendamos suscribirte a nuestra newsletter para estar al tanto de todas las fechas importantes y novedades del certamen.",
+      "Puedes inscribirte desde ya, las inscripciones se cerrará un mes antes del evento. Ahí procederemos a abrir las votaciones, y dos semanas después anunciaremos los finalistas.  ",
   },
   {
     question: "¿Cómo se seleccionan los ganadores?",
     answer:
-      "Un jurado compuesto por expertos en sostenibilidad, innovación y medio ambiente evaluará cada candidatura según criterios de impacto, innovación, viabilidad y escalabilidad del proyecto.",
+      "Una vez cerradas las participaciones, procederemos a abrir las votaciones, en las cuales puede participar cualquier persona. Dos semanas después, para los finalista, los mostraremos en la web, ¡pero las votaciones serán durante la gala!",
   },
   {
     question: "¿Tiene algún coste participar?",
@@ -31,7 +31,7 @@ const faqItems: FAQItem[] = [
   {
     question: "¿Puedo presentar más de un proyecto?",
     answer:
-      "Sí, puedes presentar varios proyectos siempre que cada uno se inscriba en la categoría correspondiente y cumpla con las bases de participación establecidas.",
+      "Sí, puedes participar en todas las categorías que quieras, pero sólo una vez por categoría.",
   },
 ];
 

@@ -1,6 +1,8 @@
-import { getCategoryByName, submitParticipation } from "@/lib/api";
+import { getCategoryByName, isAuthenticated, submitParticipation } from "@/lib/api";
 import { SCOUT_GROUPS } from "@/lib/categories";
-import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
+import { EmailAuthForm } from "./EmailAuthForm";
 import { FileUpload } from "./ui/file-upload";
 import { StatefulButton } from "./ui/stateful-button";
 
@@ -34,6 +36,19 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
     scoutGroup?: string;
   }>({});
   const [success, setSuccess] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    isAuthenticated().then(setLoggedIn);
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setLoggedIn(session !== null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleSubmit = async () => {
     setError("");
@@ -80,7 +95,6 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
     const categoryId = categoryResult.data[0].id;
 
     const formData: Record<string, string> = {
-      user_id: "1",
       is_scout: String(isScout),
       phone,
       comments: description,
@@ -97,9 +111,7 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
 
     if (result.error) {
       if (result.error.includes("401")) {
-        setError(
-          "Debes iniciar sesión para participar. La autenticación estará disponible próximamente."
-        );
+        setError("Tu sesión ha expirado. Inicia sesión de nuevo para participar.");
       } else {
         setError(result.error);
       }
@@ -137,6 +149,28 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
         >
           Volver a categorías
         </a>
+      </div>
+    );
+  }
+
+  if (loggedIn === null) {
+    return (
+      <div className="text-center py-16">
+        <p className="text-neutral-500 dark:text-neutral-400">Cargando...</p>
+      </div>
+    );
+  }
+
+  if (!loggedIn) {
+    return (
+      <div className="max-w-sm mx-auto py-16">
+        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 text-center">
+          Inicia sesión para participar
+        </h3>
+        <p className="text-neutral-600 dark:text-neutral-400 mb-8 text-center">
+          Necesitas una cuenta para enviar tu participación.
+        </p>
+        <EmailAuthForm />
       </div>
     );
   }

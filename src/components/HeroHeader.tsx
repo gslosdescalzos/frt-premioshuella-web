@@ -33,11 +33,13 @@ export const HeroHeader = ({
           cursorClassName="bg-huella-400 h-3 sm:h-5 md:h-6"
         />
       </div>
-      <Spotlight
-        gradientFirst={spotlightGradientFirst}
-        gradientSecond={spotlightGradientSecond}
-        gradientThird={spotlightGradientThird}
-      />
+      <div className="opacity-30 md:opacity-100">
+        <Spotlight
+          gradientFirst={spotlightGradientFirst}
+          gradientSecond={spotlightGradientSecond}
+          gradientThird={spotlightGradientThird}
+        />
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <TextGenerateEffect

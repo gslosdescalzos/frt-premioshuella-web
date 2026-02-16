@@ -37,11 +37,11 @@ export function isOpenCategory(slug: string): boolean {
 }
 
 export const participationRules: string[] = [
-  "En caso de añadir contenido audivisual, el participante deberá de ceder los derechos de la pieza audiovisual al grupo scout Los Descalzos. Además, las piezas entregadas deberán ser originales, hechas por uno mismo y sin ayuda de la inteligencia artificial.",
+  "En caso de añadir contenido audiovisual, el participante deberá de ceder los derechos de la pieza audiovisual al grupo scout Los Descalzos. Además, las piezas entregadas deberán ser originales, hechas por uno mismo y sin ayuda de la inteligencia artificial.",
   "Los vídeos deben de tener una duración máxima de 2 minutos, excepto en casos puntuales. (Revisar bases de la categoría)",
   "La participación será por grupos scouts, en caso de no pertenecer a ningún grupo, se podrá enviar de manera individual especificándolo en el formulario. Para algunas categorías se podrá participar de manera individual.",
   "Serán descalificadas cualquier participación que no esté de acuerdo con los valores scout, tal como violencia, incitación al odio, faltas de respeto, etc.",
-  "Las participaciones sólo serán validas si son enviadas en tiempo y forma",
+  "Las participaciones sólo serán validas si son enviadas en tiempo y forma.",
   "En caso de haber participación de menores esta deberá de venir acompañada por una autorización del tutor legal.",
   "Cada grupo podrá enviar una sola candidatura por categoría, en caso de no pertenecer a ningún grupo se podrá enviar de manera individual. En caso de presentar más de una candidatura por grupo se avisará al grupo para corregirlo. En caso de que el grupo no participe en los premios, los niños y niñas del grupo podrán hacerlo de manera libre.",
 ];
@@ -82,7 +82,7 @@ export const categories: Record<string, Category> = {
     ],
   },
   "construccion-scout": {
-    name: "Construccion scout",
+    name: "Construcción scout",
     description: "Categoría de construcción scout.",
     bases: [
       "No se podrán usar materiales de construcción como tornillos, ladrillos o similar, todos los materiales deberán de poder encontrarse en el medio o reciclados. Exceptuando la cuerda o elementos decorativos.",
@@ -149,7 +149,7 @@ export const categories: Record<string, Category> = {
     description: "Categoría grupo del año.",
     bases: [
       "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
-      "Se deberá de adjuntar una foto del grupo para adjuntar en la página.",
+      "Se deberá de adjuntar una foto del grupo para añadirla a la página web.",
     ],
   },
   "scout-del-ano": {
@@ -157,7 +157,7 @@ export const categories: Record<string, Category> = {
     description: "Categoría scout del año.",
     bases: [
       "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
-      "Se deberá de adjuntar una foto del scout para adjuntar en la página.",
+      "Se deberá de adjuntar una foto del scout para añadirla a la página web.",
     ],
   },
 };

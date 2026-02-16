@@ -16,7 +16,7 @@ export function getStaticPaths() {
 const { category, slug } = Astro.props as { category: Category; slug: string };
 ---
 
-<Layout title={`Premios Huella - ${category.name}`}>
+<Layout title={`${category.name} | Premios Huella Scout 2026`} description={`${category.description} Participa en los Premios Huella Scout 2026 en Jerez de la Frontera.`}>
   <Navbar client:load />
   <main>
     <section class="relative min-h-[50vh] flex items-center justify-center bg-neutral-950">

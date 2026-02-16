@@ -1,3 +1,5 @@
+import { supabase } from "./supabase";
+
 const BASE_URL =
   typeof import.meta !== "undefined" && import.meta.env?.PUBLIC_API_URL
     ? import.meta.env.PUBLIC_API_URL
@@ -8,14 +10,28 @@ interface ApiResponse<T> {
   error?: string;
 }
 
+async function getAuthHeaders(): Promise<Record<string, string>> {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (session?.access_token) {
+    return { Authorization: `Bearer ${session.access_token}` };
+  }
+  return {};
+}
+
 async function request<T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  authenticated = false
 ): Promise<ApiResponse<T>> {
   try {
+    const authHeaders = authenticated ? await getAuthHeaders() : {};
+
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
+        ...authHeaders,
         ...options.headers,
       },
       ...options,
@@ -24,7 +40,9 @@ async function request<T>(
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
       return {
-        error: errorData?.detail || `Error ${response.status}: ${response.statusText}`,
+        error:
+          errorData?.detail ||
+          `Error ${response.status}: ${response.statusText}`,
       };
     }
 
@@ -98,10 +116,13 @@ export async function submitParticipation(
   });
 
   try {
+    const authHeaders = await getAuthHeaders();
+
     const response = await fetch(
       `${BASE_URL}/category/${categoryId}/participate`,
       {
         method: "POST",
+        headers: authHeaders,
         body,
       }
     );
@@ -122,4 +143,11 @@ export async function submitParticipation(
       error: err instanceof Error ? err.message : "Error de conexión",
     };
   }
+}
+
+export async function isAuthenticated(): Promise<boolean> {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  return session !== null;
 }

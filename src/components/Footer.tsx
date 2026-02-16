@@ -1,4 +1,3 @@
-import React from "react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +11,7 @@ export const Footer = () => {
               Premios Huella
             </h3>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl">
-              De scouts, para scout, valorando el esfuerzo incansable para dejar este mundo mejor de como lo encontramos.
+              De scouts, para scouts. Valorando el esfuerzo incansable para dejar este mundo mejor de como lo encontramos.
             </p>
           </div>
 
@@ -73,7 +72,7 @@ export const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://www.youtube.com/@scoutslosdescalzos7688"
+                href="https://www.youtube.com/@gslosdescalzos"
                 className="text-neutral-500 hover:text-huella-600 dark:hover:text-huella-400 transition-colors"
                 aria-label="YouTube"
               >
@@ -90,6 +89,21 @@ export const Footer = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
                 </svg>
+              </a>
+            </div>
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3 uppercase tracking-wider">
+                Contacto
+              </h4>
+              <a
+                href="mailto:descalzos@mscjerez.es"
+                className="inline-flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-huella-600 dark:hover:text-huella-400 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                descalzos@mscjerez.es
               </a>
             </div>
           </div>

@@ -50,12 +50,12 @@ export const LosPremios = () => {
               </p>
             </div>
 
-            <div className="mt-10 flex flex-row flex-wrap gap-4">
+            <div className="mt-10 flex flex-col gap-4">
               <a
                 href="https://maps.app.goo.gl/WRbEr3F26JD1EGnp9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-huella-400/50 dark:hover:border-huella-400/50 hover:bg-huella-50/30 dark:hover:bg-huella-950/30 transition-all duration-300"
+                className="hidden group flex items-center gap-4 p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-huella-400/50 dark:hover:border-huella-400/50 hover:bg-huella-50/30 dark:hover:bg-huella-950/30 transition-all duration-300"
               >
                 <div className="shrink-0 w-12 h-12 rounded-lg bg-huella-500/10 dark:bg-huella-500/20 flex items-center justify-center group-hover:bg-huella-500/20 dark:group-hover:bg-huella-500/30 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-huella-500">
@@ -76,8 +76,13 @@ export const LosPremios = () => {
                 </svg>
               </a>
 
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60">
-                <div className="shrink-0 w-12 h-12 rounded-lg bg-accent-500/10 dark:bg-accent-500/15 flex items-center justify-center">
+              <a
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Premios+Huella+2026&dates=20260620T153000Z/20260620T220000Z&location=Sociedad+Jerezana+del+Vino%2C+Plz.+Silos+7%2C+Jerez&details=Gala+de+los+Premios+Huella+2026+organizada+por+el+Grupo+Scout+Los+Descalzos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden group flex items-center gap-4 p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-accent-400/50 dark:hover:border-accent-400/50 hover:bg-accent-50/30 dark:hover:bg-accent-950/30 transition-all duration-300"
+              >
+                <div className="shrink-0 w-12 h-12 rounded-lg bg-accent-500/10 dark:bg-accent-500/15 flex items-center justify-center group-hover:bg-accent-500/20 dark:group-hover:bg-accent-500/30 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-500">
                     <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
                     <line x1="16" x2="16" y1="2" y2="6" />
@@ -86,11 +91,17 @@ export const LosPremios = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-neutral-900 dark:text-white">
+                  <p className="font-semibold text-neutral-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                     20 de junio de 2026
                   </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    17:30h
+                  </p>
                 </div>
-              </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 ml-auto text-neutral-400 group-hover:text-accent-500 group-hover:translate-x-0.5 transition-all" aria-hidden>
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </a>
             </div>
           </motion.div>
         </div>

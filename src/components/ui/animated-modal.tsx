@@ -105,7 +105,7 @@ export const ModalBody = ({
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className={cn(
-              "relative z-50 w-full max-w-lg mx-4 overflow-hidden rounded-2xl",
+              "relative z-50 w-full max-w-lg mx-4 max-h-[90vh] flex flex-col overflow-hidden rounded-2xl",
               "bg-white dark:bg-neutral-900",
               "border border-neutral-200 dark:border-neutral-800",
               "shadow-2xl",
@@ -132,7 +132,9 @@ export const ModalBody = ({
                 <path d="m6 6 12 12" />
               </svg>
             </button>
-            {children}
+            <div className="overflow-y-auto flex-1">
+              {children}
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -147,5 +149,5 @@ export const ModalContent = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className={cn("p-8", className)}>{children}</div>;
+  return <div className={cn("p-4 sm:p-8", className)}>{children}</div>;
 };

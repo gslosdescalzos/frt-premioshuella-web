@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AuthButton } from "./AuthButton";
 import { ModalNewsletter } from "./ModalNewsletter";
 import {
   ResizableNavbar,
@@ -50,6 +51,9 @@ export const Navbar = () => {
         <NavBody>
           <div className="relative z-20 mr-12 flex items-center">{logo}</div>
           <NavItems items={navItems} />
+          <div className="relative z-20 ml-8 shrink-0 hidden md:block">
+            <AuthButton />
+          </div>
         </NavBody>
         <MobileNav>
           <MobileNavHeader>
@@ -80,6 +84,9 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+              <AuthButton />
+            </div>
           </MobileNavMenu>
         </MobileNav>
       </ResizableNavbar>

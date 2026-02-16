@@ -6,11 +6,40 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const { title, description = "Premios Huella - Las buenas acciones que dejan marca", image = "/images/cartel.webp", canonicalUrl } = Astro.props;
+const { title, description = "Premios Huella Scout 2026 - Gala de premios scout que reconoce el esfuerzo de jóvenes scouts y no scouts en Jerez de la Frontera. Organizado por el Grupo Scout Los Descalzos.", image = "/images/cartel.webp", canonicalUrl } = Astro.props;
 
 const site = import.meta.env.SITE ?? `${Astro.url.protocol}//${Astro.url.host}`;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, site).href;
 const imageUrl = new URL(image.startsWith("/") ? image : `/${image}`, site).href;
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Premios Huella 2026",
+  "startDate": "2026-06-20T17:30:00+02:00",
+  "endDate": "2026-06-20T23:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Sociedad Jerezana del Vino",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Plz. Silos, 7",
+      "addressLocality": "Jerez de la Frontera",
+      "addressRegion": "Cádiz",
+      "addressCountry": "ES"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Grupo Scout San Juan Bautista de Los Descalzos",
+    "url": "https://premioshuella.gslosdescalzos.com"
+  },
+  "description": "Gala de premios scout que reconoce el esfuerzo de jóvenes scouts y no scouts en Jerez de la Frontera.",
+  "image": imageUrl,
+  "url": site
+});
 ---
 
 <!doctype html>
@@ -19,6 +48,8 @@ const imageUrl = new URL(image.startsWith("/") ? image : `/${image}`, site).href
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content="premios huella, premios huella scout, premios scouts, scouts jerez, grupo scout los descalzos, gala scout, premios juveniles jerez, escultismo jerez, scouts jerez de la frontera" />
+    <meta name="author" content="Grupo Scout San Juan Bautista de Los Descalzos" />
     <title>{title}</title>
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -33,12 +64,13 @@ const imageUrl = new URL(image.startsWith("/") ? image : `/${image}`, site).href
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content="Premios Huella" />
+    <meta property="og:image:alt" content="Premios Huella Scout 2026" />
     <meta property="og:locale" content="es_ES" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
   <body class="min-h-screen overflow-x-hidden">
     <slot />

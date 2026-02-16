@@ -18,7 +18,7 @@ const { category, slug } = Astro.props as {
 };
 ---
 
-<Layout title={`Participar - ${category.name}`}>
+<Layout title={`Participar en ${category.name} | Premios Huella Scout 2026`} description={`Formulario de participación para la categoría ${category.name} en los Premios Huella Scout 2026.`}>
   <Navbar client:load />
   <main>
     <section class="relative min-h-[30vh] flex items-center justify-center bg-neutral-950">
@@ -36,7 +36,7 @@ const { category, slug } = Astro.props as {
 
     <section class="py-24 bg-white dark:bg-neutral-950">
       <div class="max-w-3xl mx-auto px-6">
-        <ParticipationForm client:load categoryName={category.name} />
+        <ParticipationForm client:load categoryName={slug} />
       </div>
     </section>
   </main>
