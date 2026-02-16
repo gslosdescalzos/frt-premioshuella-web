@@ -47,8 +47,9 @@ export const participationRules: string[] = [
 ];
 
 export const participationSummary = {
-  p1: "La participación es por grupos scouts o de manera individual si no perteneces a ningún grupo (indícalo en el formulario). Cada grupo puede enviar una sola candidatura por categoría. Las piezas deben ser originales, sin ayuda de inteligencia artificial. Los vídeos tienen una duración máxima de 2 minutos salvo excepciones. Serán descalificadas las propuestas que no respeten los valores scout.",
+  p1: "La participación es por grupos scouts o de manera individual si no perteneces a ningún grupo (indícalo en el formulario). Cada grupo puede enviar una sola candidatura por categoría. Las piezas deben ser originales, sin ayuda de inteligencia artificial. Los vídeos tienen una duración máxima de dos minutos salvo excepciones. Serán descalificadas las propuestas que no respeten los valores scout.",
   p2: "Las participaciones solo son válidas si se envían en tiempo y forma. Los menores deben ir acompañados de una autorización del tutor legal. El contenido audiovisual requiere la cesión de derechos al grupo scout Los Descalzos.",
+  p3: "No dudes en participar en un evento tan inolvidable como este. Un montón de premios originales y buenos momentos te esperan."
 } as const;
 
 export const categories: Record<string, Category> = {

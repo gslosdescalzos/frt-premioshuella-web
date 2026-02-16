@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { submitContact } from "@/lib/api";
+import { ErrorModal } from "./ErrorModal";
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -9,11 +10,13 @@ export const ContactForm = () => {
     mensaje: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorModalOpen(false);
     setErrorMessage("");
 
     const result = await submitContact(formData);
@@ -21,6 +24,7 @@ export const ContactForm = () => {
     if (result.error) {
       setStatus("error");
       setErrorMessage(result.error);
+      setErrorModalOpen(true);
     } else {
       setStatus("success");
       setFormData({ nombre: "", email: "", mensaje: "" });
@@ -110,9 +114,11 @@ export const ContactForm = () => {
                 Mensaje enviado correctamente.
               </p>
             )}
-            {status === "error" && (
-              <p className="text-center text-red-500 font-medium">{errorMessage}</p>
-            )}
+            <ErrorModal
+              open={errorModalOpen}
+              onOpenChange={setErrorModalOpen}
+              message={errorMessage}
+            />
           </form>
         </motion.div>
       </div>

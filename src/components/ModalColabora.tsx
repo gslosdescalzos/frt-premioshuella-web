@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ModalProvider, ModalBody, ModalContent } from "./ui/animated-modal";
 import { submitColabora } from "@/lib/api";
+import { ErrorModal } from "./ErrorModal";
 
 interface ModalColaboraProps {
   open: boolean;
@@ -16,11 +17,13 @@ export const ModalColabora = ({ open, onOpenChange }: ModalColaboraProps) => {
     comentarios: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorModalOpen(false);
     setErrorMessage("");
 
     const result = await submitColabora(formData);
@@ -28,6 +31,7 @@ export const ModalColabora = ({ open, onOpenChange }: ModalColaboraProps) => {
     if (result.error) {
       setStatus("error");
       setErrorMessage(result.error);
+      setErrorModalOpen(true);
     } else {
       setStatus("success");
       setFormData({ nombre: "", apellidos: "", email: "", telefono: "", comentarios: "" });
@@ -151,9 +155,11 @@ export const ModalColabora = ({ open, onOpenChange }: ModalColaboraProps) => {
                 ¡Formulario enviado correctamente!
               </p>
             )}
-            {status === "error" && (
-              <p className="text-center text-red-500 font-medium">{errorMessage}</p>
-            )}
+            <ErrorModal
+              open={errorModalOpen}
+              onOpenChange={setErrorModalOpen}
+              message={errorMessage}
+            />
           </form>
         </ModalContent>
       </ModalBody>

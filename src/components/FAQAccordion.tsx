@@ -33,6 +33,31 @@ const faqItems: FAQItem[] = [
     answer:
       "Sí, puedes participar en todas las categorías que quieras, pero sólo una vez por categoría.",
   },
+  {
+    question: "¿Cuándo y dónde serán los premios?",
+    answer:
+      "Los premios serán entregados el 20 de junio de 2026 en la Sociedad Jerezana del Vino, Plz. Silos, 7. ¡No te lo pierdas!",
+  },
+  {
+    question: "¿Tiene algún coste el acceso a la gala?",
+    answer:
+      "Sí, las entradas para la gala serán de 7€ por persona, pero estas incluyen dos consumiciones gratuitas, para que disfrutes de la mejor manera posible.",
+  },
+  {
+    question: "¿Puedo ir a ver los stands y consumir en la barra sin tener entrada?",
+    answer:
+      "Sí, queremos fomentar el comercio local y la posibilidad de encontrarse a gente y compartir momentos, por lo que la entrada al recinto será gratuita. Aunque... ¿te vas a perder lo que tenemos preparado para tí?",
+  },
+  {
+    question: "¿A que hora empieza el evento?",
+    answer:
+      "Desde por la mañana (hora por confirmar) tendremos stands de diferentes emprendedores y comerciantes locales, pudiendo comer y beber lo que quieras. A partir de las 17:30 empezaremos con la alfombra roja. A las 18:30 ya estaremos todos sentados para no perdernos ni un minuto de la gala de premios. La hora de cierre la pones tú",
+  },
+  {
+    question: "¿Cómo puedo comprar las entradas?",
+    answer:
+      "Podrás comprarlas todos los sábados en la Parroquia San Juan Bautista de Los Descalzos, en Calle Medina S/N a las 14:00. También podrás pedirselas a alguien que conozcas del grupo de Los Descalzos o comprarlas cuando nuestros RRPPs ¡vayan a tu grupo!",
+  },
 ];
 
 export const FAQAccordion = () => {

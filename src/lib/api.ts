@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { CONNECTION_ERROR, UNKNOWN_ERROR, VALIDATION_ERROR_FALLBACK } from "./messages";
 
 const BASE_URL =
   typeof import.meta !== "undefined" && import.meta.env?.PUBLIC_API_URL
@@ -8,6 +9,17 @@ const BASE_URL =
 interface ApiResponse<T> {
   data?: T;
   error?: string;
+}
+
+function parseApiError(detail: unknown): string {
+  if (typeof detail === "string") return detail;
+  if (Array.isArray(detail)) {
+    const messages = detail
+      .map((d: { msg?: string }) => d?.msg)
+      .filter(Boolean) as string[];
+    return messages.length > 0 ? messages.join(". ") : VALIDATION_ERROR_FALLBACK;
+  }
+  return UNKNOWN_ERROR;
 }
 
 async function getAuthHeaders(): Promise<Record<string, string>> {
@@ -39,18 +51,15 @@ async function request<T>(
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
-      return {
-        error:
-          errorData?.detail ||
-          `Error ${response.status}: ${response.statusText}`,
-      };
+      const detail = errorData?.detail ?? `Error ${response.status}: ${response.statusText}`;
+      return { error: parseApiError(detail) };
     }
 
     const data = await response.json();
     return { data };
   } catch (err) {
     return {
-      error: err instanceof Error ? err.message : "Error de conexión",
+      error: err instanceof Error ? err.message : CONNECTION_ERROR,
     };
   }
 }
@@ -129,18 +138,15 @@ export async function submitParticipation(
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
-      return {
-        error:
-          errorData?.detail ||
-          `Error ${response.status}: ${response.statusText}`,
-      };
+      const detail = errorData?.detail ?? `Error ${response.status}: ${response.statusText}`;
+      return { error: parseApiError(detail) };
     }
 
     const data = await response.json();
     return { data };
   } catch (err) {
     return {
-      error: err instanceof Error ? err.message : "Error de conexión",
+      error: err instanceof Error ? err.message : CONNECTION_ERROR,
     };
   }
 }

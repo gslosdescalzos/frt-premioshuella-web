@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { ErrorModal } from "./ErrorModal";
 
 interface EmailAuthFormProps {
   onSuccess?: () => void;
@@ -14,12 +15,13 @@ export const EmailAuthForm = ({ onSuccess, compact }: EmailAuthFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [confirmationSent, setConfirmationSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrorModalOpen(false);
     setLoading(true);
 
     try {
@@ -41,7 +43,8 @@ export const EmailAuthForm = ({ onSuccess, compact }: EmailAuthFormProps) => {
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Error inesperado";
-      setError(message);
+      setErrorMessage(message);
+      setErrorModalOpen(true);
     } finally {
       setLoading(false);
     }
@@ -81,7 +84,11 @@ export const EmailAuthForm = ({ onSuccess, compact }: EmailAuthFormProps) => {
         />
       </div>
 
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      <ErrorModal
+        open={errorModalOpen}
+        onOpenChange={setErrorModalOpen}
+        message={errorMessage}
+      />
 
       <button
         type="submit"
@@ -101,7 +108,7 @@ export const EmailAuthForm = ({ onSuccess, compact }: EmailAuthFormProps) => {
           type="button"
           onClick={() => {
             setMode(mode === "login" ? "register" : "login");
-            setError("");
+            setErrorModalOpen(false);
           }}
           className="text-huella-600 dark:text-huella-400 hover:underline font-medium"
         >

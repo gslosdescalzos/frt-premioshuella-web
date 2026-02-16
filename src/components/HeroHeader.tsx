@@ -69,7 +69,7 @@ export const HeroHeader = ({
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/@scoutslosdescalzos7688"
+              href="https://www.youtube.com/@gslosdescalzos"
               className="text-neutral-400 hover:text-huella-400 transition-colors shrink-0"
               aria-label="YouTube"
             >

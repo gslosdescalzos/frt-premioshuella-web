@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ModalProvider, ModalBody, ModalContent } from "./ui/animated-modal";
 import { subscribeNewsletter } from "@/lib/api";
+import { ErrorModal } from "./ErrorModal";
 
 interface ModalNewsletterProps {
   open: boolean;
@@ -10,11 +11,13 @@ interface ModalNewsletterProps {
 export const ModalNewsletter = ({ open, onOpenChange }: ModalNewsletterProps) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorModalOpen(false);
     setErrorMessage("");
 
     const result = await subscribeNewsletter({ email });
@@ -22,6 +25,7 @@ export const ModalNewsletter = ({ open, onOpenChange }: ModalNewsletterProps) =>
     if (result.error) {
       setStatus("error");
       setErrorMessage(result.error);
+      setErrorModalOpen(true);
     } else {
       setStatus("success");
       setEmail("");
@@ -75,9 +79,11 @@ export const ModalNewsletter = ({ open, onOpenChange }: ModalNewsletterProps) =>
                 ¡Suscripción realizada con éxito!
               </p>
             )}
-            {status === "error" && (
-              <p className="text-center text-red-500 font-medium">{errorMessage}</p>
-            )}
+            <ErrorModal
+              open={errorModalOpen}
+              onOpenChange={setErrorModalOpen}
+              message={errorMessage}
+            />
           </form>
         </ModalContent>
       </ModalBody>

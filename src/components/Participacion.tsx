@@ -35,6 +35,7 @@ export const Participacion = () => {
             <div className="space-y-4 text-neutral-600 dark:text-neutral-300 text-justify leading-relaxed mb-8">
               <p>{participationSummary.p1}</p>
               <p>{participationSummary.p2}</p>
+              <p>{participationSummary.p3}</p>
             </div>
             <MovingBorderButton as="a" href="#categorias" className="font-bold uppercase tracking-wider">
               Participar

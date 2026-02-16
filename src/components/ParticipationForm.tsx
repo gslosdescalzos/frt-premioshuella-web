@@ -3,6 +3,7 @@ import { SCOUT_GROUPS } from "@/lib/categories";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { EmailAuthForm } from "./EmailAuthForm";
+import { ErrorModal } from "./ErrorModal";
 import { FileUpload } from "./ui/file-upload";
 import { StatefulButton } from "./ui/stateful-button";
 
@@ -28,7 +29,8 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   const [participantSurname, setParticipantSurname] = useState("");
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState<File[]>([]);
-  const [error, setError] = useState("");
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<{
     phone?: string;
     description?: string;
@@ -51,7 +53,7 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   }, []);
 
   const handleSubmit = async () => {
-    setError("");
+    setErrorModalOpen(false);
     setFieldErrors({});
 
     if (!isValidPhone(phone)) {
@@ -88,7 +90,8 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
 
     const categoryResult = await getCategoryByName(categoryName);
     if (categoryResult.error || !categoryResult.data?.length) {
-      setError(categoryResult.error || "No se encontró la categoría");
+      setErrorMessage(categoryResult.error || "No se encontró la categoría");
+      setErrorModalOpen(true);
       throw new Error("Category not found");
     }
 
@@ -110,11 +113,12 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
     const result = await submitParticipation(categoryId, formData, files);
 
     if (result.error) {
-      if (result.error.includes("401")) {
-        setError("Tu sesión ha expirado. Inicia sesión de nuevo para participar.");
-      } else {
-        setError(result.error);
-      }
+      setErrorMessage(
+        result.error.includes("401")
+          ? "Tu sesión ha expirado. Inicia sesión de nuevo para participar."
+          : result.error
+      );
+      setErrorModalOpen(true);
       throw new Error(result.error);
     }
 
@@ -144,7 +148,7 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
           Tu participación ha sido registrada correctamente.
         </p>
         <a
-          href="/categorias"
+          href="/"
           className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-bold uppercase tracking-wider bg-accent-600 hover:bg-accent-700 transition-colors"
         >
           Volver a categorías
@@ -347,9 +351,11 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
             )}
           </div>
 
-          {error && (
-            <p className="text-center text-red-500 font-medium">{error}</p>
-          )}
+          <ErrorModal
+            open={errorModalOpen}
+            onOpenChange={setErrorModalOpen}
+            message={errorMessage}
+          />
 
           <div className="pt-4">
             <StatefulButton
