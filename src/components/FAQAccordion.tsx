@@ -11,7 +11,12 @@ const faqItems: FAQItem[] = [
   {
     question: "¿Quién puede participar en los Premios Huella?",
     answer:
-      "Cualquier persona o grupo scout tanto de ASDE como de MSC pueden participar en todas las categorías, exceptuando aquellas que estén limitadas para scouts. ¡Revisa las categorías abiertas al público!",
+      "Cualquier persona (scout o no) o grupo scout tanto de ASDE como de MSC (Delegación Diocesana MSC Jerez y grupos ASDE Jerez) pueden participar en todas las categorías, exceptuando aquellas que estén limitadas para scouts. ¡Revisa las categorías abiertas al público!",
+  },
+  {
+    question: "¿Puedo participar si no tengo ningún grupo scout pero lo he sido anteriormente?",
+    answer:
+      "Sí, podrás participar tanto en las categorias abiertas al público como en las categorías scouts, aunque deberás de indicar en el formulario que no perteneces a ningún grupo.",
   },
   {
     question: "¿Cuál es el plazo de inscripción?",

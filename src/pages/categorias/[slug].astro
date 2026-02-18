@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
 import { ParticiparButton } from "../../components/ParticiparButton";
-import { categories, participationRules } from "../../lib/categories";
+import Layout from "../../layouts/Layout.astro";
 import type { Category } from "../../lib/categories";
+import { categories, participationRules } from "../../lib/categories";
 
 export function getStaticPaths() {
   return Object.entries(categories).map(([slug, category]) => ({
@@ -19,9 +19,19 @@ const { category, slug } = Astro.props as { category: Category; slug: string };
 <Layout title={`${category.name} | Premios Huella Scout 2026`} description={`${category.description} Participa en los Premios Huella Scout 2026 en Jerez de la Frontera.`}>
   <Navbar client:load />
   <main>
-    <section class="relative min-h-[50vh] flex items-center justify-center bg-neutral-950">
-      <div class="absolute inset-0 bg-gradient-to-b from-huella-900/20 to-neutral-950" />
-      <div class="relative z-10 text-center px-6 pt-24">
+    <section class="relative w-full flex flex-col items-center justify-center bg-neutral-950 overflow-hidden">
+      <picture class="block w-full opacity-40">
+        <source media="(min-width: 1024px)" srcset="/images/category-header-lg.webp" />
+        <source media="(min-width: 768px)" srcset="/images/category-header-md.webp" />
+        <img
+          src="/images/category-header-sm.webp"
+          alt=""
+          class="block w-full h-auto object-contain"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
+      <div class="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center text-center px-6 pt-24 z-10">
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4">
           {category.name}
         </h1>
@@ -29,7 +39,7 @@ const { category, slug } = Astro.props as { category: Category; slug: string };
           {category.description}
         </p>
       </div>
-      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
+      <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
     </section>
 
     <section class="py-24 bg-white dark:bg-neutral-950">

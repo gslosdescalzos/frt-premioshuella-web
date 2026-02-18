@@ -55,7 +55,7 @@ export const participationSummary = {
 export const categories: Record<string, Category> = {
   "foto-scout": {
     name: "Foto scout",
-    description: "Categoría de fotografía scout.",
+    description: "La categoría que revive el momento",
     bases: [
       "Foto relacionada con el escultismo.",
       "Puede haber sido realizada en cualquier año, siempre que siga las reglas del concurso.",
@@ -64,7 +64,7 @@ export const categories: Record<string, Category> = {
   },
   "videoclip-musical-original": {
     name: "Videoclip musical original",
-    description: "Categoría de videoclip musical original.",
+    description: "La categoría que expresa tu creatividad",
     bases: [
       "La letra de la canción deberá de ser original.",
       "Podrá ser creada específicamente para el concurso o creada previamente.",
@@ -75,7 +75,7 @@ export const categories: Record<string, Category> = {
   },
   "deportista-scout": {
     name: "Deportista scout",
-    description: "Categoría de deportista scout.",
+    description: "La categoría que demuestra tu talento",
     bases: [
       "Se deberá de presentar una demostración en formato vídeo donde se pueda ver claramente el deporte que se practica y a la persona realizándolo.",
       "Cualquier deporte será válido, desde fútbol, artes marciales, gimnasia rítmica, patinaje, malabares, etc.",
@@ -84,7 +84,7 @@ export const categories: Record<string, Category> = {
   },
   "construccion-scout": {
     name: "Construcción scout",
-    description: "Categoría de construcción scout.",
+    description: "La categoría que construye lo imposible",
     bases: [
       "No se podrán usar materiales de construcción como tornillos, ladrillos o similar, todos los materiales deberán de poder encontrarse en el medio o reciclados. Exceptuando la cuerda o elementos decorativos.",
       "Las uniones entre materiales deberán de ser realizadas a mano, mediante encastres o nudos.",
@@ -94,7 +94,7 @@ export const categories: Record<string, Category> = {
   },
   "simbologia-scout": {
     name: "Simbología scout",
-    description: "Categoría de simbología scout.",
+    description: "La categoría que descubre la historia",
     bases: [
       "Deberá de entregarse una foto detalle actual y una foto usándola en grupo, podrá ir acompañada de entre 1 y 3 fotos antiguas. Además, se deberá de aportar la explicación e historia de la simbología en cuestión.",
       "Ejemplos: Libro de oro, bandera hecha a mano por los responsables, manta con camisetas de un responsable antiguo que se lleva a los campamentos…",
@@ -104,7 +104,7 @@ export const categories: Record<string, Category> = {
   },
   "habilidades-pionerismo": {
     name: "Habilidades de pionerismo",
-    description: "Categoría de habilidades de pionerismo.",
+    description: "La categoría que desarrolla tus habilidades",
     bases: [
       "Demostración de mejores habilidades de supervivencia en entornos naturales.",
       "Demostración de mejores técnicas de progresión en montaña.",
@@ -114,7 +114,7 @@ export const categories: Record<string, Category> = {
   },
   "artista-scout": {
     name: "Artista scout",
-    description: "Categoría de artista scout.",
+    description: "La categoría que expresa tu creatividad",
     bases: [
       "Podrá ser un vídeo o una foto original donde se aprecie una habilidad artística del concursante.",
       "Ejemplos: un vídeo bailando, cantando, tocando la guitarra, manualidades, espectáculo de magia, una foto de un cuadro…",
@@ -122,7 +122,7 @@ export const categories: Record<string, Category> = {
   },
   "emprendimiento-joven": {
     name: "Emprendimiento joven",
-    description: "Categoría de emprendimiento joven.",
+    description: "La categoría que impulsa tu negocio",
     bases: [
       "Debe de tener menos de 30 años.",
       "Se deberá de entregar un vídeo, estilo 'elevator speech', como presentación del proyecto con los puntos clave.",
@@ -130,7 +130,7 @@ export const categories: Record<string, Category> = {
   },
   "representacion-cultural-jerezana": {
     name: "Representación cultural jerezana",
-    description: "Categoría de representación cultural jerezana.",
+    description: "La categoría que transmite jerezanía",
     bases: [
       "El participante debe de tener menos de 30 años.",
       "Debe de estar enfocada en la cultura jerezana, arte, gastronomía, flamenco, poesía, literatura, fotografía…",
@@ -139,7 +139,7 @@ export const categories: Record<string, Category> = {
   },
   "accion-social": {
     name: "Acción social",
-    description: "Categoría de acción social abierta al público.",
+    description: "La categoría que deja huella",
     bases: [
       "Mejor proyecto de especial relevancia e impacto público (ayuda en la DANA, Greenteam…) o acción social individual continuada (Voluntario en Cáritas, comedor del salvador).",
       "Deberá de haber sido realizada durante el año 2025 o 2026.",
@@ -147,7 +147,7 @@ export const categories: Record<string, Category> = {
   },
   "grupo-del-ano": {
     name: "Grupo del año",
-    description: "Categoría grupo del año.",
+    description: "La categoría que deja huella",
     bases: [
       "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
       "Se deberá de adjuntar una foto del grupo para añadirla a la página web.",
@@ -155,7 +155,7 @@ export const categories: Record<string, Category> = {
   },
   "scout-del-ano": {
     name: "Scout del año",
-    description: "Categoría scout del año.",
+    description: "La categoría que deja huella",
     bases: [
       "Se deberá de presentar una memoria, un vídeo y una infografía con los puntos claves realizados durante el año.",
       "Se deberá de adjuntar una foto del scout para añadirla a la página web.",

@@ -40,7 +40,7 @@ export const ParticiparButton = ({
       >
         <IconCalendarEvent className="h-6 w-6 shrink-0" stroke={1.5} />
         <span className="font-medium">
-          Las participaciones se abrirán el 23 de febrero
+          Las participaciones se abrirán el 28 de febrero
         </span>
       </div>
     // </>

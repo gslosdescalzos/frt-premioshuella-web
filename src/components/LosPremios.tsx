@@ -12,11 +12,11 @@ export const LosPremios = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative"
           >
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+            <div className="rounded-2xl overflow-hidden">
               <img
                 src="/images/cartel.webp"
                 alt="Cartel Premios Huella 2026"
-                className="w-full h-full object-cover"
+                className="w-full h-auto min-h-0 max-w-full block"
               />
             </div>
           </motion.div>
@@ -71,7 +71,7 @@ export const LosPremios = () => {
                     Sociedad Jerezana del Vino
                   </p>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Plz. Silos, 7
+                    Plaza Silos, 7, Jerez
                   </p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 ml-auto text-neutral-400 group-hover:text-huella-500 group-hover:translate-x-0.5 transition-all" aria-hidden>
@@ -98,7 +98,7 @@ export const LosPremios = () => {
                     20 de junio de 2026
                   </p>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    12:00 stands - 17:30h alfombra roja - 18:30h gala de premios
+                    12:00h stands - 17:30h alfombra roja - 18:30h premios
                   </p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 ml-auto text-neutral-400 group-hover:text-accent-500 group-hover:translate-x-0.5 transition-all" aria-hidden>
