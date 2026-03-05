@@ -84,6 +84,17 @@ export const EmailAuthForm = ({ onSuccess, compact }: EmailAuthFormProps) => {
         />
       </div>
 
+      {mode === "login" && (
+        <div className="text-right -mt-1">
+          <a
+            href="/recuperar-contrasena"
+            className="text-xs text-huella-600 dark:text-huella-400 hover:underline font-medium"
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+      )}
+
       <ErrorModal
         open={errorModalOpen}
         onOpenChange={setErrorModalOpen}

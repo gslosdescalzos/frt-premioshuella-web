@@ -17,7 +17,7 @@ export const SCOUT_GROUPS = [
   "Fatima",
   "San Jose",
   "La Salle",
-  "Las Vinas",
+  "Las Viñas",
   "El Pilar",
   "San Benito",
   "Juan Pablo II",

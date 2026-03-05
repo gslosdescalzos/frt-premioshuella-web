@@ -39,6 +39,7 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   }>({});
   const [success, setSuccess] = useState(false);
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+  const [uploadProgress, setUploadProgress] = useState<number | null>(null);
 
   useEffect(() => {
     isAuthenticated().then(setLoggedIn);
@@ -110,19 +111,26 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
       formData.participant_surname = participantSurname;
     }
 
-    const result = await submitParticipation(categoryId, formData, files);
-
-    if (result.error) {
-      setErrorMessage(
-        result.error.includes("401")
-          ? "Tu sesión ha expirado. Inicia sesión de nuevo para participar."
-          : result.error
+    setUploadProgress(0);
+    try {
+      const result = await submitParticipation(categoryId, formData, files, (p) =>
+        setUploadProgress(p)
       );
-      setErrorModalOpen(true);
-      throw new Error(result.error);
-    }
 
-    setSuccess(true);
+      if (result.error) {
+        setErrorMessage(
+          result.error.includes("401")
+            ? "Tu sesión ha expirado. Inicia sesión de nuevo para participar."
+            : result.error
+        );
+        setErrorModalOpen(true);
+        throw new Error(result.error);
+      }
+
+      setSuccess(true);
+    } finally {
+      setUploadProgress(null);
+    }
   };
 
   if (success) {
@@ -356,6 +364,20 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
             onOpenChange={setErrorModalOpen}
             message={errorMessage}
           />
+
+          {uploadProgress !== null && (
+            <div className="space-y-2">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                Subiendo archivos... {Math.round(uploadProgress)}%
+              </p>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700">
+                <div
+                  className="h-full rounded-full bg-huella-500 transition-all duration-300 ease-out"
+                  style={{ width: `${uploadProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
 
           <div className="pt-4">
             <StatefulButton
