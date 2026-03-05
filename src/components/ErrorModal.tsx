@@ -22,6 +22,7 @@ export const ErrorModal = ({
             {message}
           </p>
           <button
+            type="button"
             onClick={() => onOpenChange(false)}
             className="w-full py-3 px-6 rounded-xl bg-accent-600 hover:bg-accent-700 text-white font-semibold transition-colors uppercase tracking-wider"
           >

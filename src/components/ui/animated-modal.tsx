@@ -47,7 +47,7 @@ export const ModalTrigger = ({
 }) => {
   const { setOpen } = useModal();
   return (
-    <button className={cn(className)} onClick={() => setOpen(true)}>
+    <button type="button" className={cn(className)} onClick={() => setOpen(true)}>
       {children}
     </button>
   );
@@ -113,6 +113,7 @@ export const ModalBody = ({
             )}
           >
             <button
+              type="button"
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 z-10 p-1 rounded-full text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition-colors"
               aria-label="Cerrar"
