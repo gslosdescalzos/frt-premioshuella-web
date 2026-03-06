@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useState } from "react";
 import { ErrorModal } from "./ErrorModal";
 
 const inputClasses =
@@ -19,7 +19,7 @@ export const ForgotPasswordForm = () => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
+        redirectTo: `${window.location.origin}/reset-password?email=${encodeURIComponent(email)}`,
       });
       if (error) throw error;
       setSent(true);

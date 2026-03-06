@@ -40,6 +40,15 @@ export const AuthButton = () => {
     setUser(null);
   };
 
+  const handleUpdatePassword = () => {
+    if (!user?.email) {
+      return;
+    }
+
+    setOpen(false);
+    window.location.href = `/reset-password?email=${encodeURIComponent(user.email)}`;
+  };
+
   if (loading) {
     return null;
   }
@@ -73,15 +82,23 @@ export const AuthButton = () => {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 truncate mb-4">
                   {user.email}
                 </p>
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setOpen(false);
-                  }}
-                  className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
-                >
-                  Cerrar sesión
-                </button>
+                <div className="space-y-2">
+                  <button
+                    onClick={handleUpdatePassword}
+                    className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-huella-600 text-white hover:bg-huella-700 transition-colors"
+                  >
+                    Actualizar contraseña
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
               </div>
             </div>,
             document.body,
@@ -91,15 +108,23 @@ export const AuthButton = () => {
             <p className="text-sm text-neutral-600 dark:text-neutral-400 truncate mb-4">
               {user.email}
             </p>
-            <button
-              onClick={() => {
-                handleLogout();
-                setOpen(false);
-              }}
-              className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
-            >
-              Cerrar sesión
-            </button>
+            <div className="space-y-2">
+              <button
+                onClick={handleUpdatePassword}
+                className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-huella-600 text-white hover:bg-huella-700 transition-colors"
+              >
+                Actualizar contraseña
+              </button>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setOpen(false);
+                }}
+                className="w-full px-4 py-2 text-sm font-medium rounded-xl bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
+              >
+                Cerrar sesión
+              </button>
+            </div>
           </div>
         )}
       </div>

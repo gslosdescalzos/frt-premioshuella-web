@@ -1,30 +1,43 @@
-import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 import { ErrorModal } from "./ErrorModal";
 
 const inputClasses =
   "w-full px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-huella-500 focus:border-transparent outline-none transition-shadow text-sm";
 
+const SUCCESS_REDIRECT_DELAY_MS = 1500;
+
 export const UpdatePasswordForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [updated, setUpdated] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event) => {
-        if (event === "PASSWORD_RECOVERY") {
-          setReady(true);
-        }
-      }
-    );
+    const emailParam = new URLSearchParams(window.location.search).get("email")?.trim() ?? "";
 
-    return () => subscription.unsubscribe();
+    if (!emailParam) {
+      window.location.replace("/");
+      return;
+    }
+
+    setEmail(emailParam);
   }, []);
+
+  useEffect(() => {
+    if (!successMessage) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      window.location.replace("/");
+    }, SUCCESS_REDIRECT_DELAY_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [successMessage]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +54,7 @@ export const UpdatePasswordForm = () => {
     try {
       const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
-      setUpdated(true);
+      setSuccessMessage("Contraseña actualizada correctamente");
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Error inesperado";
       setErrorMessage(message);
@@ -51,7 +64,11 @@ export const UpdatePasswordForm = () => {
     }
   };
 
-  if (updated) {
+  if (!email) {
+    return null;
+  }
+
+  if (successMessage) {
     return (
       <div className="text-center py-4">
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
@@ -61,24 +78,10 @@ export const UpdatePasswordForm = () => {
           </svg>
         </div>
         <p className="text-sm font-medium text-green-600 dark:text-green-400 mb-2">
-          Contraseña actualizada correctamente
+          {successMessage}
         </p>
-        <a
-          href="/"
-          className="inline-block mt-4 px-4 py-2.5 text-sm font-medium rounded-xl bg-huella-600 text-white hover:bg-huella-700 transition-colors"
-        >
-          Volver al inicio
-        </a>
-      </div>
-    );
-  }
-
-  if (!ready) {
-    return (
-      <div className="text-center py-4">
-        <div className="w-8 h-8 mx-auto mb-4 border-2 border-huella-600 border-t-transparent rounded-full animate-spin" />
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">
-          Verificando enlace...
+        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+          Redirigiendo al inicio...
         </p>
       </div>
     );
@@ -87,7 +90,7 @@ export const UpdatePasswordForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <p className="text-sm text-neutral-600 dark:text-neutral-400">
-        Introduce tu nueva contraseña.
+        Introduce tu nueva contraseña para {email}.
       </p>
 
       <div>
