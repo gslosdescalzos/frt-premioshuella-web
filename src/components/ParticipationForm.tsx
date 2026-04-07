@@ -2,7 +2,7 @@ import { getCategoryByName, isAuthenticated, submitParticipation } from "@/lib/a
 import { SCOUT_GROUPS } from "@/lib/categories";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
-import { EmailAuthForm } from "./EmailAuthForm";
+import { AuthModal } from "./AuthModal";
 import { ErrorModal } from "./ErrorModal";
 import { FileUpload } from "./ui/file-upload";
 import { StatefulButton } from "./ui/stateful-button";
@@ -40,6 +40,7 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
   const [success, setSuccess] = useState(false);
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     isAuthenticated().then(setLoggedIn);
@@ -175,15 +176,30 @@ export const ParticipationForm = ({ categoryName }: ParticipationFormProps) => {
 
   if (!loggedIn) {
     return (
-      <div className="max-w-sm mx-auto py-16">
-        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4 text-center">
-          Inicia sesión para participar
-        </h3>
-        <p className="text-neutral-600 dark:text-neutral-400 mb-8 text-center">
-          Necesitas una cuenta para enviar tu participación.
-        </p>
-        <EmailAuthForm />
-      </div>
+      <>
+        <div className="max-w-sm mx-auto py-16 text-center">
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
+            Inicia sesión para participar
+          </h3>
+          <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+            Necesitas una cuenta para enviar tu participación.
+          </p>
+          <button
+            type="button"
+            onClick={() => setAuthModalOpen(true)}
+            className="inline-flex items-center justify-center rounded-full bg-huella-600 px-8 py-3 font-bold uppercase tracking-wider text-white transition-colors hover:bg-huella-700"
+          >
+            Iniciar sesión
+          </button>
+        </div>
+
+        <AuthModal
+          open={authModalOpen}
+          onOpenChange={setAuthModalOpen}
+          title="Inicia sesión para participar"
+          description="Necesitas una cuenta para enviar tu participación."
+        />
+      </>
     );
   }
 

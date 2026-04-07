@@ -1,4 +1,8 @@
+import { isAuthenticated } from "@/lib/api";
+import { useState } from "react";
+import { AuthModal } from "./AuthModal";
 import { LogoCloud } from "./LogoCloud";
+import { MovingBorderButton } from "./ui/moving-border";
 import { FlipWords } from "./ui/flip-words";
 import { Spotlight } from "./ui/spotlight-new";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
@@ -20,6 +24,26 @@ export const HeroHeader = ({
   title = "Premios Huella",
   showSocialIcons = true,
 }: HeroHeaderProps) => {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(false);
+
+  const handlePreinscription = async () => {
+    setIsCheckingAuth(true);
+
+    try {
+      const loggedIn = await isAuthenticated();
+
+      if (!loggedIn) {
+        setAuthModalOpen(true);
+        return;
+      }
+
+      window.location.href = "/preinscripcion";
+    } finally {
+      setIsCheckingAuth(false);
+    }
+  };
+
   return (
     <div className="relative min-h-fit md:min-h-[80vh] flex flex-col items-center justify-start pt-8 sm:pt-12 md:justify-center md:pt-0 overflow-hidden bg-neutral-950 dark:bg-neutral-950">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center mb-2 sm:mb-8 md:mb-24">
@@ -91,11 +115,31 @@ export const HeroHeader = ({
         )}
       </div>
 
-      <div className="relative z-20 mt-10 pb-6 md:absolute md:bottom-0 md:right-0 md:mt-0 md:pr-6">
+      <div className="relative z-20 mt-10 flex justify-center pb-6 md:absolute md:bottom-6 md:left-1/2 md:mt-0 md:-translate-x-1/2 md:pb-0">
+        <MovingBorderButton
+          onClick={handlePreinscription}
+          disabled={isCheckingAuth}
+          className="font-bold uppercase tracking-wider"
+        >
+          {isCheckingAuth ? "Comprobando..." : "Preinscribirme"}
+        </MovingBorderButton>
+      </div>
+
+      <div className="relative z-20 mt-6 flex justify-center pb-6 md:absolute md:bottom-0 md:right-0 md:mt-0 md:justify-end md:pr-6">
         <LogoCloud />
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent pointer-events-none" />
+
+      <AuthModal
+        open={authModalOpen}
+        onOpenChange={setAuthModalOpen}
+        title="Inicia sesión para preinscribirte"
+        description="Necesitas una cuenta para completar la preinscripción al concurso."
+        onSuccess={() => {
+          window.location.href = "/preinscripcion";
+        }}
+      />
     </div>
   );
 };

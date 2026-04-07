@@ -7,6 +7,7 @@ import { HeroHeader } from "../components/HeroHeader";
 import { LosPremios } from "../components/LosPremios";
 import { Navbar } from "../components/Navbar";
 import { Participacion } from "../components/Participacion";
+import { Preinscripcion } from "../components/Preinscripcion";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -16,6 +17,7 @@ import Layout from "../layouts/Layout.astro";
     <HeroHeader client:load title="PREMIOS HUELLA" />
     <LosPremios client:visible />
     <CategoriasGrid client:visible />
+    <Preinscripcion client:visible />
     <Participacion client:visible />
     <ColaboraSection client:visible />
     <ContactForm client:visible />

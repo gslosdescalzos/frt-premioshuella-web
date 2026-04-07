@@ -109,6 +109,10 @@ export async function getCategoryByName(
   );
 }
 
+export async function getCategories(): Promise<ApiResponse<CategoryDTO[]>> {
+  return request<CategoryDTO[]>("/category");
+}
+
 interface PresignedFileInfo {
   filename: string;
   presigned_url: string;
@@ -254,4 +258,24 @@ export async function isAuthenticated(): Promise<boolean> {
     data: { session },
   } = await supabase.auth.getSession();
   return session !== null;
+}
+
+export interface PreinscriptionPayload {
+  username: string;
+  surname: string | null;
+  categories: number[];
+  is_scout_group: boolean;
+}
+
+export async function submitPreinscription(
+  payload: PreinscriptionPayload
+): Promise<ApiResponse<unknown>> {
+  return request(
+    "/preinscription",
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+    true
+  );
 }

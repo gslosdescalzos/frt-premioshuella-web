@@ -1,0 +1,31 @@
+---
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar";
+import { PreinscripcionForm } from "../components/PreinscripcionForm";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Preinscripción | Premios Huella Scout 2026" description="Completa tu preinscripción para ayudarnos a organizar mejor tu participación en los Premios Huella Scout 2026.">
+  <Navbar client:load />
+  <main>
+    <section class="relative flex min-h-[30vh] items-center justify-center bg-neutral-950">
+      <div class="absolute inset-0 bg-gradient-to-b from-huella-900/20 to-neutral-950" />
+      <div class="relative z-10 px-6 pt-24 text-center">
+        <h1 class="mb-4 text-3xl font-black text-white md:text-5xl lg:text-6xl">
+          Preinscripción al concurso
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-neutral-300">
+          Cuéntanos si te interesa participar y en qué categorías te gustaría hacerlo.
+        </p>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent dark:from-neutral-950" />
+    </section>
+
+    <section class="bg-white py-24 dark:bg-neutral-950">
+      <div class="mx-auto max-w-4xl px-6">
+        <PreinscripcionForm client:load />
+      </div>
+    </section>
+  </main>
+  <Footer client:visible />
+</Layout>
